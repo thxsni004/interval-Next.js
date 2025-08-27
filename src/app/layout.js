@@ -4,7 +4,7 @@
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
 
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter'; //prevent hydration issue 
 
 
 // export const metadata = {

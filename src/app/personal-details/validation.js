@@ -16,4 +16,4 @@ export const personalDetailsSchema = Yup.object({
                 "if Certificates not Uploaded ,Please enter valid reason"
             ),
     }),
-});
+}); 

@@ -7,9 +7,9 @@ import {
   clearPersonalDetails,
 } from "@/redux/features/personalDetailsSlice";
 import { personalDetailsSchema } from "./validation";
-import FormTextField from "./FormTextField";
-import FormSelect from "./FormSelect";
-import FileUploadField from "./FileUploadField";
+import FormTextField from "../../components/form/FormTextField";
+import FormSelect from "../../components/form/FormSelect";
+import FileUploadField from "../../components/form/FileUploadField";
 import { useState } from "react";
 
 export default function PersonalDetailsForm() {
@@ -49,11 +49,11 @@ export default function PersonalDetailsForm() {
           graduationCertificate: null,
           plusTwoCertificate: null,
           reason: "",
-        }}
+        }} 
         validationSchema={personalDetailsSchema}
         onSubmit={(values) => {
           dispatch(savePersonalDetails(values));
-          alert("Form submitted!");
+          // alert("Form submitted!");
         }}
       >
         {({ resetForm, values }) => (
@@ -125,38 +125,46 @@ export default function PersonalDetailsForm() {
                 label="Highest Qualification"
                 options={["Graduation", "Post Graduation"]}
                 fullWidth
-                
               />
 
-<Box
-  sx={{
-    display: "flex",
-    alignItems: "center",
-     justifyContent: "space-between",
-    mb: 2,
-    mt:3
-  }}
->
-  <Typography variant="body2" sx={{ fontWeight: 500, mb: 0.5 }}>
-    Graduation/Post-Graduation Certificate
-  </Typography>
-  <FileUploadField name="graduationCertificate" />
-</Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  mb: 2,
+                  mt: 3,
+                }}
+              >
+                <Box>
+                  <Typography variant="body2" sx={{ fontWeight: 500, mb: 0.5 }}>
+                    Graduation/Post-Graduation Certificate
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Upload 1 supported file. Max 1GB
+                  </Typography>
+                </Box>
+                <FileUploadField name="graduationCertificate" />
+              </Box>
 
-<Box
-  sx={{
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    mb: 2,
-  }}
->
-  <Typography variant="body2" sx={{ mr: 2, fontWeight: 500 }}>
-    Plus Two (12th Grade) Certificate
-  </Typography>
-  <FileUploadField name="plusTwoCertificate" />
-</Box>
-
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  mb: 2,
+                }}
+              >
+                <Box>
+                  <Typography variant="body2" sx={{ mr: 2, fontWeight: 500 }}>
+                    Plus Two (12th Grade) Certificate
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Upload 1 supported file . Max 1GB
+                  </Typography>
+                </Box>
+                <FileUploadField name="plusTwoCertificate" />
+              </Box>
             </Box>
 
             {/* Section 3 */}
@@ -188,7 +196,7 @@ export default function PersonalDetailsForm() {
             >
               <Button
                 variant="outlined"
-                color="secondary"
+                // color="secondary"
                 onClick={() => {
                   resetForm();
                   dispatch(clearPersonalDetails());
