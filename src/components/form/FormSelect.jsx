@@ -7,7 +7,7 @@ export default function FormSelect({ label, options, ...props }) {
 
     return (
     <TextField
-      select
+      select       //its work dropdown mode 
       fullWidth
       label={label}
       {...field}

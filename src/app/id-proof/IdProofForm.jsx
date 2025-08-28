@@ -1,4 +1,4 @@
-// app/id-proof/IdProofForm.jsx
+
 "use client";
 import { Formik, Form } from "formik";
 import {
@@ -16,8 +16,9 @@ import { useDispatch } from "react-redux";
 import { saveIdProof, clearIdProof } from "../../redux/features/idProofSlice";
 import FormSelect from "../../components/form/FormSelect";
 import FileUploadField from "../../components/form/FileUploadField";
-import FormRadioGroup from "../../components/form/FormRadioGroup";
+// import FormRadioGroup from "../../components/form/FormRadioGroup";
 import { idProofSchema } from "./validation";
+import FormTextField from "@/components/form/FormTextField";
 
 export default function IdProofForm() {
   const dispatch = useDispatch();
@@ -63,11 +64,13 @@ export default function IdProofForm() {
         }}
         validationSchema={idProofSchema}
         onSubmit={(values) => {
-          dispatch(saveIdProof(values));
-          alert("ID Proof information submitted successfully!");
+          console.log("idproofdetails", values);
+          // value submit portion
+          // dispatch(saveIdProof(values));
+          // alert("ID Proof information submitted successfully!");
         }}
       >
-        {({ values, setFieldValue, resetForm }) => (
+        {({ values, setFieldValue, resetForm, errors, touched }) => (
           <Form>
             {/* ID Proof 1 Section */}
             <Box
@@ -125,7 +128,7 @@ export default function IdProofForm() {
                 </Typography>
                 <FormSelect
                   name="idProof2Type"
-                  options={idProofOptions}
+                  options={idProofOptions} // items in select
                   label="Select ID Proof Type"
                 />
               </Box>
@@ -138,40 +141,43 @@ export default function IdProofForm() {
                 </Typography>
                 <FileUploadField
                   name="idProof2File"
-                  // label="Please upload a clear scanned copy. Max file size: 5MB. Allowed formats: PDF, JPG, PNG."
                 />
               </Box>
             </Box>
 
             {/* Upload Reason Section */}
-            <Box
-              sx={{
-                background: "#ffffff",
-                borderRadius: 2,
-                p: 3,
-                mb: 3,
-                border: "1px solid #e0e0e0",
-              }}
-            >
-              <Typography variant="subtitle1" fontWeight={600} mb={2}>
-                Unable to Upload ID Proofs?
-              </Typography>
+            {(!values.idProof1File || !values.idProof2File) && (  // if you  uplaod files then hide reason field
+              <Box
+                sx={{
+                  background: "#ffffff",
+                  borderRadius: 2,
+                  p: 3,
+                  mb: 3,
+                  border: "1px solid #e0e0e0",
+                }}
+              >
+                <Typography variant="subtitle1" fontWeight={600} mb={2}>
+                  Unable to Upload ID Proofs?
+                </Typography>
 
-              <Typography variant="body2" color="text.secondary" paragraph>
-                If you are unable to upload the ID proofs, please mention the
-                reason below:
-              </Typography>
+                <Typography variant="body2" color="text.secondary" paragraph>
+                  If you are unable to upload the ID proofs, please mention the
+                  reason below:
+                </Typography>
 
-              <TextField
-                fullWidth
-                multiline
-                rows={3}
-                placeholder="Type here..."
-                value={values.uploadReason}
-                onChange={(e) => setFieldValue("uploadReason", e.target.value)}
-                name="uploadReason"
-              />
-            </Box>
+                <FormTextField
+                  fullWidth
+                  multiline
+                  rows={3}
+                  placeholder="Type here..."
+                  value={values.uploadReason}
+                  onChange={(e) =>
+                    setFieldValue("uploadReason", e.target.value)
+                  }
+                  name="uploadReason"
+                />
+              </Box>
+            )}
 
             {/* Work Experience Section */}
             <Box
@@ -197,23 +203,26 @@ export default function IdProofForm() {
                   name="hasWorkExperience"
                   value={values.hasWorkExperience}
                   onChange={(e) =>
-                    setFieldValue(
-                      "hasWorkExperience",
-                      e.target.value === "true"
-                    )
+                    setFieldValue("hasWorkExperience", e.target.value === 'true')
                   }
                 >
                   <FormControlLabel
-                    value={true}
+                    value="true"
                     control={<Radio />}
                     label="Yes, I have prior work experience."
                   />
                   <FormControlLabel
-                    value={false}
+                    value="false"
                     control={<Radio />}
                     label="No, I do not have prior work experience."
                   />
                 </RadioGroup>
+
+                {touched.hasWorkExperience && errors.hasWorkExperience && (
+                  <Typography variant="caption" color="error">
+                    {errors.hasWorkExperience}
+                  </Typography>
+                )}
               </FormControl>
             </Box>
 

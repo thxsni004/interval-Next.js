@@ -170,9 +170,9 @@ export default function HealthHistoryForm() {
         }}
         validationSchema={healthHistorySchema}
         onSubmit={(values) => {
-          dispatch(saveHealthHistory(values));
+          // dispatch(saveHealthHistory(values));
           // You would typically navigate to another page or show success message here
-        //   alert("Health history submitted successfully!");
+          // alert("Health history submitted successfully!");
         }}
       >
         {({ values, setFieldValue, resetForm }) => (
@@ -400,7 +400,7 @@ export default function HealthHistoryForm() {
                 </FormLabel>
                 <RadioGroup
                   row
-                  name="sensory.hasSensory"
+                  name="sensory.hasSensory" 
                   value={values.sensory.hasSensory}
                   onChange={(e) =>
                     setFieldValue(
