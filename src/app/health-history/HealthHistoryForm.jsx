@@ -1,105 +1,3 @@
-// "use client";
-// import { Formik, Form } from "formik";
-// import { Button, Box, Typography } from "@mui/material";
-// import { useDispatch } from "react-redux";
-// import {
-//   saveHealthHistory,
-//   clearHealthHistory,
-// } from "@/redux/features/healthHistorySlice";
-
-// import FormTextField from "../../components/form/FormTextField";
-// import { healthHistorySchema } from "./validation";
-// // import FormSelect from "../../components/form/FormSelect";
-
-// export default function HealthHistoryForm() {
-//   const dispatch = useDispatch();
-
-//   return (
-//     <Box
-//       sx={{
-//         maxWidth: 800,
-//         mx: "auto",
-//         my: 5,
-//         backgroundColor: "#ffff",
-//         p: 4,
-//         borderRadius: 5,
-//         boxShadow: "0px 2px 10px rgba(0,0,0,0.1)",
-//       }}
-//     >
-//       {/* Header */}
-//       <Box sx={{ textAlign: "center", mb: 4 }}>
-//         <Typography variant="h5" fontWeight={600} gutterBottom>
-//           Health History
-//         </Typography>
-//         <Typography variant="body2" color="text.secondary">
-//           Please provide accurate information about your health history,
-//           existing conditions, allergies, and related concerns. This will help
-//           us ensure a safe and supporstive workplace . All response will remail
-//           confidential.
-//         </Typography>
-//       </Box>
-
-//       <Formik
-//         initialValues={{
-//           height: "",
-//           weight: "",
-//           bmiCategory: "",
-//           // otherBmi:"",
-//           medicalHistory: { hasHistory: false, details: "" },
-//           conditions: { hasCondition: false, details: "" },
-//           allergies: { hasAllergies: false, details: "" },
-//           sensory: { hasSensory: false, details: "" },
-//           declaration: false,
-//         }}
-//         validationSchema={healthHistorySchema}
-//         onSubmit={(values) => {
-//           dispatch(saveHealthHistory(values));
-//         }}
-//       >
-//         {({ resetForm, values, setFieldValue }) => (
-//           <Form>
-//             <Box
-//               sx={{
-//                 background: "#ffffff",
-//                 borderRadius: 2,
-//                 p: 3,
-//                 mb: 3,
-//                 border: "1px solid #e0e0e0",
-//               }}
-//             >
-//               <Typography variant="subtitle1" fontWeight={600} mb={1}>
-//                 Physical Measurements
-//               </Typography>
-//               <Box sx={{ display: "flex", flexDirection: "row", gap: 17 }}>
-//                 <Box>
-//                   <Typography
-//                     sx={{ color: "text.secondary", fontSize: 14, mb: 1 }}
-//                   >
-//                     {" "}
-//                     Height(in cm)*
-//                   </Typography>
-//                   <FormTextField label="height" name="height" size="small" />
-//                 </Box>
-//                 <Box>
-//                   <Typography
-//                     sx={{ color: "text.secondary", fontSize: 14, mb: 1 }}
-//                   >
-//                     weight (in kg)*{" "}
-//                   </Typography>
-//                   <FormTextField label="weight" name="weight" size="small" />
-//                 </Box>
-//               </Box>
-
-//             </Box>
-
-//           </Form>
-//         )}
-//       </Formik>
-//     </Box>
-//   );
-// }
-
-// app/health-history/HealthHistoryForm.jsx
 "use client";
 import { Formik, Form } from "formik";
 import {
@@ -137,11 +35,11 @@ export default function HealthHistoryForm() {
       sx={{
         maxWidth: 800,
         mx: "auto",
-        my: 5,
-        backgroundColor: "#ffff",
-        p: 4,
-        borderRadius: 5,
-        boxShadow: "0px 2px 10px rgba(0,0,0,0.1)",
+          my: { xs: 3, md: 5 },
+        backgroundColor: "#eeecf3ff",
+         p: { xs: 3, md: 4 },
+        borderRadius: 4,
+        boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
       }}
     >
       {/* Header */}
@@ -170,6 +68,7 @@ export default function HealthHistoryForm() {
         }}
         validationSchema={healthHistorySchema}
         onSubmit={(values) => {
+            console.log("Health history submitted:", values);
           // dispatch(saveHealthHistory(values));
           // You would typically navigate to another page or show success message here
           // alert("Health history submitted successfully!");
@@ -180,14 +79,14 @@ export default function HealthHistoryForm() {
             {/* Physical Measurements Section */}
             <Box
               sx={{
-                background: "#ffffff",
-                borderRadius: 2,
+                background: "#fff",
+                borderRadius: 3,
                 p: 3,
                 mb: 3,
-                border: "1px solid #e0e0e0",
+                border: "1px solid #dadae2ff",
               }}
             >
-              <Typography variant="subtitle1" fontWeight={600} mb={2}>
+              <Typography variant="subtitle1" fontWeight={600} mb={2} >
                 Physical Measurements
               </Typography>
 
@@ -211,13 +110,14 @@ export default function HealthHistoryForm() {
                 </Box>
               </Box>
          </Box>
-              <Box sx={{background: "#ffffff",
-                borderRadius: 2,
+         {/* BMI CATEGORY  */}
+              <Box sx={{background: "#fff",
+                borderRadius: 3,
                 p: 3,
                 mb: 3,
-                border: "1px solid #e0e0e0",}}>
+                border: "1px solid #dadae2ff",}}>
                 <Typography
-                 variant="subtitle1" fontWeight={600} mb={2}
+                 variant="subtitle1" fontWeight={600} mb={2} 
                 >
                   BMI Category*
                 </Typography>
@@ -232,14 +132,14 @@ export default function HealthHistoryForm() {
             {/* Medical History Section */}
             <Box
               sx={{
-                background: "#ffffff",
-                borderRadius: 2,
+                background: "#fff",
+                borderRadius: 3,
                 p: 3,
                 mb: 3,
-                border: "1px solid #e0e0e0",
+                border: "1px solid #dadae2ff",
               }}
             >
-              <Typography variant="subtitle1" fontWeight={600} mb={2}>
+              <Typography variant="subtitle1" fontWeight={600} mb={2} >
                 Medical History
               </Typography>
 
@@ -282,11 +182,11 @@ export default function HealthHistoryForm() {
             {/* Medical Conditions Section */}
             <Box
               sx={{
-                background: "#ffffff",
-                borderRadius: 2,
+                background: "#fff",
+                borderRadius: 3,
                 p: 3,
                 mb: 3,
-                border: "1px solid #e0e0e0",
+                border: "1px solid #dadae2ff",
               }}
             >
               <Typography variant="subtitle1" fontWeight={600} mb={2}>
@@ -336,7 +236,7 @@ export default function HealthHistoryForm() {
                 borderRadius: 2,
                 p: 3,
                 mb: 3,
-                border: "1px solid #e0e0e0",
+                border: "1px solid #dadae2ff",
               }}
             >
               <Typography variant="subtitle1" fontWeight={600} mb={2}>
@@ -386,7 +286,7 @@ export default function HealthHistoryForm() {
                 borderRadius: 2,
                 p: 3,
                 mb: 3,
-                border: "1px solid #e0e0e0",
+                border: "1px solid #dadae2ff",
               }}
             >
               <Typography variant="subtitle1" fontWeight={600} mb={2}>
@@ -432,11 +332,11 @@ export default function HealthHistoryForm() {
             {/* Declaration Section */}
             <Box
               sx={{
-                background: "#ffffff",
-                borderRadius: 2,
+                background: "#fff",
+                borderRadius: 3,
                 p: 3,
                 mb: 3,
-                border: "1px solid #e0e0e0",
+                border: "1px solid #dadae2ff",
               }}
             >
               <Typography variant="subtitle1" fontWeight={600} mb={2}>
@@ -459,28 +359,66 @@ export default function HealthHistoryForm() {
 
             {/* Form Actions */}
             <Box
-              sx={{ display: "flex", justifyContent: "space-between", mt: 4 }}
+              sx={{ display: "flex",
+                 justifyContent: "center", 
+                 mt: 3,
+                  gap:2,
+                  flexDirection:{xs:'column' , md:'row'}
+                //   display: "flex",
+                // justifyContent: "center",
+                // mt: 3,
+               
+                // flexWrap:'wrap'
+                }}
             >
               <Button
                 variant="outlined"
                 onClick={() => {
                   resetForm();
-
                   dispatch(clearHealthHistory());
                 }}
-                sx={{ minWidth: 120 }}
+                  sx={{
+                  borderRadius: 3,
+                  textTransform: "none",
+                  px: 3,
+                  borderColor: "#e8aeb7",
+                  color: "#b56576",
+                  "&:hover": {
+                    borderColor: "#b56576",
+                    backgroundColor: "#fdecef",
+                  },
+                }}
               >
                 Clear Form
               </Button>
 
-              <Box sx={{ display: "flex", gap: 2 }}>
-                <Button variant="outlined" sx={{ minWidth: 120 }}>
+              <Box sx={{ display: "flex", gap: 2 ,flexDirection:{xs:'column' , md:'row'} }}>
+                <Button variant="outlined" sx={{ 
+                  borderRadius:3,
+                  textTransform:'none',
+                  px:3,
+                  borderColor:'#a19b9bff',
+                  color:'#635e5eff',
+                  "&:hover":{
+                    borderColor:'#a19191ff',
+                    backgroundColor:'#fcf3f3ff'
+                  }
+                 }}>
                   Back
                 </Button>
                 <Button
                   type="submit"
                   variant="contained"
-                  sx={{ minWidth: 120 }}
+                   sx={{
+                  borderRadius: 3,
+                  textTransform: "none",
+                  px: 4,
+                  backgroundColor: "#5b8da1ff",
+                  "&:hover": {
+                    backgroundColor: "#658d8fff",
+                  },
+                  boxShadow: "0 4px 10px rgba(111,177,181,0.3)",
+                }}
                 >
                   Next
                 </Button>

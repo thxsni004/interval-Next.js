@@ -5,10 +5,10 @@ import FormTextField from "./FormTextField";
 
 
 export default function ConditionalField({ conditionField, name, label, ...props }) {
-  const [field] = useField(conditionField);
-  const [detailField, detailMeta] = useField(name);
+  const [field] = useField(conditionField);  //get calue of the conditiona radio
+  const [detailField, detailMeta] = useField(name);  //detail text input
 
-    if (!field.value) return null;
+    if (!field.value) return null;  // if false -> dont't render anything
 
 return(
     <Box sx={{ mt: 1, ml: 3 }}>

@@ -35,21 +35,20 @@ export default function IdProofForm() {
       sx={{
         maxWidth: 800,
         mx: "auto",
-        my: 5,
-        backgroundColor: "#ffff",
-        p: 4,
-        borderRadius: 5,
-        boxShadow: "0px 2px 10px rgba(0,0,0,0.1)",
+        my: { xs: 3, md: 5 },
+        backgroundColor: "#eeecf3ff",
+        p: { xs: 3, md: 4 },
+        borderRadius: 4,
+        boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
       }}
     >
       {/* Header */}
       <Box sx={{ textAlign: "center", mb: 4 }}>
-        <Typography variant="h5" fontWeight={600} gutterBottom>
+        <Typography variant="h5" fontWeight={700} gutterBottom sx={{ color: "#333" }}>
           ID Proofs & Work Experience
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Upload any two valid government-issued ID proofs for identity
-          confirmation.
+          Upload any two valid government-issued ID proofs for identity confirmation.
         </Typography>
       </Box>
 
@@ -65,159 +64,138 @@ export default function IdProofForm() {
         validationSchema={idProofSchema}
         onSubmit={(values) => {
           console.log("idproofdetails", values);
-          // value submit portion
           // dispatch(saveIdProof(values));
-          // alert("ID Proof information submitted successfully!");
         }}
       >
         {({ values, setFieldValue, resetForm, errors, touched }) => (
           <Form>
-            {/* ID Proof 1 Section */}
+            {/* ID Proof 1 */}
             <Box
               sx={{
-                background: "#ffffff",
-                borderRadius: 2,
+                background: "#fff",
+                borderRadius: 3,
                 p: 3,
                 mb: 3,
-                border: "1px solid #e0e0e0",
+                border: "1px solid #dadae2ff",
               }}
             >
-              <Typography variant="subtitle1" fontWeight={600} mb={2}>
+              <Typography variant="subtitle1" fontWeight={600} mb={2} sx={{ color: "#4a596a" }}>
                 ID Proof 1 *
               </Typography>
+              <FormSelect name="idProof1Type" options={idProofOptions} label="Select ID Proof Type" fullWidth />
 
-              <Box sx={{ mb: 2 }}>
-                <Typography sx={{ color: "black", fontSize: 14, mb: 1 }}>
-                  Choose
-                </Typography>
-                <FormSelect
-                  name="idProof1Type"
-                  options={idProofOptions}
-                  label="Select ID Proof Type"
-                />
-              </Box>
-
-              <Box sx={{ display: "flex" }}>
-                <Typography
-                  sx={{ color: "text.secondary", m: 2, fontSize: 10 }}
-                >
-                  Please upload a clear scanned copy. Max file size: 5MB.
-                  Allowed formats: PDF, JPG, PNG.
-                </Typography>
-                <FileUploadField name="idProof1File" />
-              </Box>
-            </Box>
-
-            {/* ID Proof 2 Section */}
-            <Box
-              sx={{
-                background: "#ffffff",
-                borderRadius: 2,
-                p: 3,
-                mb: 3,
-                border: "1px solid #e0e0e0",
-              }}
-            >
-              <Typography variant="subtitle1" fontWeight={600} mb={2}>
-                ID Proof 2
-              </Typography>
-
-              <Box sx={{ mb: 2 }}>
-                <Typography sx={{ color: "black", fontSize: 14, mb: 1 }}>
-                  Choose
-                </Typography>
-                <FormSelect
-                  name="idProof2Type"
-                  options={idProofOptions} // items in select
-                  label="Select ID Proof Type"
-                />
-              </Box>
-              <Box sx={{ display: "flex" }}>
-                <Typography
-                  sx={{ color: "text.secondary", m: 2, fontSize: 10 }}
-                >
-                  Please upload a clear scanned copy. Max file size: 5MB.
-                  Allowed formats: PDF, JPG, PNG.
-                </Typography>
-                <FileUploadField
-                  name="idProof2File"
-                />
-              </Box>
-            </Box>
-
-            {/* Upload Reason Section */}
-            {(!values.idProof1File || !values.idProof2File) && (  // if you  uplaod files then hide reason field
               <Box
                 sx={{
-                  background: "#ffffff",
-                  borderRadius: 2,
-                  p: 3,
-                  mb: 3,
-                  border: "1px solid #e0e0e0",
+                  display: "flex",
+                  flexDirection: { xs: "column", md: "row" },
+                  alignItems: { xs: "flex-start", md: "center" },
+                  justifyContent: "space-between",
+                  gap: 2,
+                  mt: 2,
                 }}
               >
-                <Typography variant="subtitle1" fontWeight={600} mb={2}>
-                  Unable to Upload ID Proofs?
-                </Typography>
+                <Box>
+                  <Typography variant="body2" sx={{ fontWeight: 500, mb: 0.5, color: "#131111ff" }}>
+                    Upload ID Proof
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Upload 1 supported file. Max 5MB (PDF, JPG, PNG)
+                  </Typography>
+                </Box>
+                <Box sx={{ width: { xs: "100%", md: "auto" } }}>
+                  <FileUploadField name="idProof1File" />
+                </Box>
+              </Box>
+            </Box>
 
-                <Typography variant="body2" color="text.secondary" paragraph>
-                  If you are unable to upload the ID proofs, please mention the
-                  reason below:
-                </Typography>
+            {/* ID Proof 2 */}
+            <Box
+              sx={{
+                background: "#fff",
+                borderRadius: 3,
+                p: 3,
+                mb: 3,
+                border: "1px solid #dadae2ff",
+              }}
+            >
+              <Typography variant="subtitle1" fontWeight={600} mb={2} sx={{ color: "#4a596a" }}>
+                ID Proof 2
+              </Typography>
+              <FormSelect name="idProof2Type" options={idProofOptions} label="Select ID Proof Type" fullWidth />
 
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: { xs: "column", md: "row" },
+                  alignItems: { xs: "flex-start", md: "center" },
+                  justifyContent: "space-between",
+                  gap: 2,
+                  mt: 2,
+                }}
+              >
+                <Box>
+                  <Typography variant="body2" sx={{ fontWeight: 500, mb: 0.5, color: "#131111ff" }}>
+                    Upload ID Proof
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Upload 1 supported file. Max 5MB (PDF, JPG, PNG)
+                  </Typography>
+                </Box>
+                <Box sx={{ width: { xs: "100%", md: "auto" } }}>
+                  <FileUploadField name="idProof2File" />
+                </Box>
+              </Box>
+            </Box>
+
+            {/* Reason Section */}
+            {(!values.idProof1File || !values.idProof2File) && (
+              <Box
+                sx={{
+                  background: "#fff",
+                  borderRadius: 3,
+                  p: 3,
+                  mb: 3,
+                  border: "1px solid #e6e6fa",
+                }}
+              >
                 <FormTextField
-                  fullWidth
+                  name="uploadReason"
+                  label="Reason (if ID proof not uploaded)"
                   multiline
                   rows={3}
-                  placeholder="Type here..."
+                  fullWidth
                   value={values.uploadReason}
-                  onChange={(e) =>
-                    setFieldValue("uploadReason", e.target.value)
-                  }
-                  name="uploadReason"
+                  onChange={(e) => setFieldValue("uploadReason", e.target.value)}
                 />
               </Box>
             )}
 
-            {/* Work Experience Section */}
+            {/* Work Experience */}
             <Box
               sx={{
-                background: "#ffffff",
-                borderRadius: 2,
+                background: "#fff",
+                borderRadius: 3,
                 p: 3,
                 mb: 3,
-                border: "1px solid #e0e0e0",
+                border: "1px solid #dadae2ff",
               }}
             >
-              <Typography variant="subtitle1" fontWeight={600} mb={2}>
+              <Typography variant="subtitle1" fontWeight={600} mb={2} sx={{ color: "#4a596a" }}>
                 Prior Work Experience *
               </Typography>
-
               <FormControl component="fieldset">
-                <FormLabel component="legend">
-                  Do you have any prior work experience that needs to be
-                  verified?
+                <FormLabel component="legend" sx={{ mb: 1 }}>
+                  Do you have any prior work experience that needs to be verified?
                 </FormLabel>
                 <RadioGroup
                   row
                   name="hasWorkExperience"
                   value={values.hasWorkExperience}
-                  onChange={(e) =>
-                    setFieldValue("hasWorkExperience", e.target.value === 'true')
-                  }
+                  onChange={(e) => setFieldValue("hasWorkExperience", e.target.value === "true")}
                 >
-                  <FormControlLabel
-                    value="true"
-                    control={<Radio />}
-                    label="Yes, I have prior work experience."
-                  />
-                  <FormControlLabel
-                    value="false"
-                    control={<Radio />}
-                    label="No, I do not have prior work experience."
-                  />
+                  <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                  <FormControlLabel value="false" control={<Radio />} label="No" />
                 </RadioGroup>
-
                 {touched.hasWorkExperience && errors.hasWorkExperience && (
                   <Typography variant="caption" color="error">
                     {errors.hasWorkExperience}
@@ -225,32 +203,69 @@ export default function IdProofForm() {
                 )}
               </FormControl>
             </Box>
-
             {/* Form Actions */}
             <Box
-              sx={{ display: "flex", justifyContent: "space-between", mt: 4 }}
+              sx={{ display: "flex",
+                 justifyContent: "center", 
+                 mt: 3,
+                  gap:2,
+                  flexDirection:{xs:'column' , md:'row'}
+
+                }}
             >
               <Button
                 variant="outlined"
-                onClick={() => resetForm()}
-                sx={{ minWidth: 120 }}
+                onClick={() => {
+                  resetForm();
+                  dispatch(clearIdProof());
+                }}
+                  sx={{
+                  borderRadius: 3,
+                  textTransform: "none",
+                  px: 3,
+                  borderColor: "#e8aeb7",
+                  color: "#b56576",
+                  "&:hover": {
+                    borderColor: "#b56576",
+                    backgroundColor: "#fdecef",
+                  },
+                }}
               >
                 Clear Form
               </Button>
 
-              <Box sx={{ display: "flex", gap: 2 }}>
-                <Button variant="outlined" sx={{ minWidth: 120 }}>
+              <Box sx={{ display: "flex", gap: 2 ,flexDirection:{xs:'column' , md:'row'} }}>
+                <Button variant="outlined" sx={{ 
+                  borderRadius:3,
+                  textTransform:'none',
+                  px:3,
+                  borderColor:'#a19b9bff',
+                  color:'#635e5eff',
+                  "&:hover":{
+                    borderColor:'#a19191ff',
+                    backgroundColor:'#fcf3f3ff'
+                  }
+                 }}>
                   Back
                 </Button>
                 <Button
                   type="submit"
                   variant="contained"
-                  sx={{ minWidth: 120 }}
+                   sx={{
+                  borderRadius: 3,
+                  textTransform: "none",
+                  px: 4,
+                  backgroundColor: "#5b8da1ff",
+                  "&:hover": {
+                    backgroundColor: "#658d8fff",
+                  },
+                  boxShadow: "0 4px 10px rgba(111,177,181,0.3)",
+                }}
                 >
-                  {values.hasWorkExperience === false ? "Preview" : "Submit"}
+                 {values.hasWorkExperience === false ? "Preview" : "Next"}
                 </Button>
               </Box>
-            </Box>
+            </Box> 
           </Form>
         )}
       </Formik>

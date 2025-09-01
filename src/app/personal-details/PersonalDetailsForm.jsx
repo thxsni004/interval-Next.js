@@ -17,6 +17,7 @@ export default function PersonalDetailsForm() {
   const [designationCard, setDesignationCard] = useState("");
 
   return (
+    
     <Box
       sx={{
         maxWidth: 800,
@@ -96,7 +97,7 @@ export default function PersonalDetailsForm() {
                     px: 2,
                     py: 1,
                     borderRadius: 2,
-                    backgroundColor: "#fff",
+                    backgroundColor: "#eeecf3ff",
                     display: "inline-block",
                   }}
                 >
