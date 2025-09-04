@@ -124,7 +124,7 @@ export default function HealthHistoryForm() {
                 <FormRadioGroup
                   name="bmiCategory"
                   options={bmiOptions}
-                //   label="Select BMI Category"
+                  label="Select BMI Category"
                 />
               </Box>
    
@@ -159,16 +159,17 @@ export default function HealthHistoryForm() {
                     )
                   }
                 >
+
                   <FormControlLabel
-                    value={true}
-                    control={<Radio />}
-                    label="Yes"
+                  value={true}
+                  control={<Radio/>}
+                  label="Yes"
                   />
-                  <FormControlLabel
-                    value={false}
-                    control={<Radio />}
-                    label="No"
-                  />
+                   <FormControlLabel
+                   value={false}
+                   control={<Radio/>}
+                   label="No"
+                   />
                 </RadioGroup>
               </FormControl>
 
